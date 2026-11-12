@@ -1,0 +1,82 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "shadowlink"
+version = "0.1.0"
+description = "SHADOWLINK: Privacy Re-identification Risk Assessment Platform"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+keywords = ["privacy", "re-identification", "k-anonymity", "quasi-identifiers"]
+dependencies = [
+    "pandas>=2.0",
+    "numpy>=1.24",
+    "fastapi>=0.100",
+    "pydantic>=2.0",
+    "sqlalchemy>=2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "ruff>=0.1",
+    "mypy>=1.5",
+    "pandas-stubs>=2.0",
+    "httpx>=0.24",
+]
+postgres = [
+    "psycopg[binary]>=3.1",
+]
+
+[project.scripts]
+shadowlink = "shadowlink.cli.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# ---------------------------------------------------------------------------
+# pytest
+# ---------------------------------------------------------------------------
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# -v for verbose output; leave off -W error here — that is applied via CLI gate
+addopts = ""
+filterwarnings = [
+    "error",
+    "ignore:.*httpx.*:starlette.exceptions.StarletteDeprecationWarning",
+    "ignore::starlette.exceptions.StarletteDeprecationWarning",
+]
+
+[tool.coverage.run]
+source = ["shadowlink"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 90
+
+# ---------------------------------------------------------------------------
+# ruff  — default rules (E, F) + import sorting (I)
+# ---------------------------------------------------------------------------
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["shadowlink"]
+
+# ---------------------------------------------------------------------------
+# mypy — strict typing for src/shadowlink; relax for tests and stubs
+# ---------------------------------------------------------------------------
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "shadowlink.*"
+disallow_untyped_defs = true

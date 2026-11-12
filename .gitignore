@@ -1,0 +1,71 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Caches and tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+*.log
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Databases and runtime data
+*.db
+*.sqlite
+*.sqlite3
+data/
+
+# Generated pipeline runs and experiment outputs
+out/
+out*/
+experiments/
+
+# Archives
+*.zip
+*.tar
+*.tar.gz
+*.7z
+
+# Editor & OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# AI agent & assistant files
+AGENTS.md
+CLAUDE.md
+.agent/
+.agents/
+.gemini/
+.antigravity/
+.cursor/
+.claude/
+*.prompt
+
+# Environment & Secrets
+.env
+.env.*
+*.pem
+*.key
+credentials.json
+
+# Temporary / Local Packaging Scripts
+scripts/create_clean_zip.py
