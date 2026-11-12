@@ -1,0 +1,37 @@
+{
+  "seed": 42,
+  "generator": {
+    "preset": "report_abc",
+    "population_size": 100,
+    "shared_fraction": 0.5,
+    "typo_rate": 0.05,
+    "missing_rate": 0.02
+  },
+  "qi_analyser": {
+    "target_dataset": "A",
+    "qi_columns": ["age", "city"]
+  },
+  "attacker": {
+    "steps": [["age", "city"], ["course"]],
+    "n_targets": 25
+  },
+  "linkage": {
+    "left_dataset": "A",
+    "right_dataset": "B",
+    "blocking_keys": ["city"],
+    "attributes": ["age", "city"],
+    "threshold": 0.85
+  },
+  "mitigation": {
+    "transformations": [
+      {
+        "kind": "generalize_age",
+        "parameters": {
+          "column": "age",
+          "bin_width": 5
+        }
+      }
+    ]
+  }
+}
+

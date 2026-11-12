@@ -1,0 +1,11 @@
+[
+  {
+    "kind": "generalize_age",
+    "parameters": {"column": "age", "bin_width": 5, "base": 0}
+  },
+  {
+    "kind": "suppress_small_classes",
+    "parameters": {"qi_columns": ["age", "city"], "k": 2}
+  }
+]
+
